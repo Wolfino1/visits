@@ -1,4 +1,5 @@
 package com.visitas.visitas.visitas.infrastructure.endpoints.rest;
+
 import com.visitas.visitas.visitas.application.dto.request.SaveVisitsRequest;
 import com.visitas.visitas.visitas.application.dto.response.VisitsResponse;
 import com.visitas.visitas.visitas.application.mappers.VisitsDtoMapper;

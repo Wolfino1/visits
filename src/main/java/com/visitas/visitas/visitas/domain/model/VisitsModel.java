@@ -6,6 +6,7 @@ import com.visitas.visitas.visitas.domain.utils.constants.DomainConstants;
 
 import java.time.LocalDateTime;
 
+
 public class VisitsModel {
     private Long id;
     private Long idSeller;

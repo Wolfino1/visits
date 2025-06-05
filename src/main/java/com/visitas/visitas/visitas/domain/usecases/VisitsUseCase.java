@@ -8,12 +8,11 @@ import com.visitas.visitas.visitas.domain.ports.out.VisitsPersistencePort;
 import com.visitas.visitas.visitas.domain.utils.constants.DomainConstants;
 import com.visitas.visitas.visitas.domain.utils.page.PagedResult;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class VisitsUseCase implements VisitsServicePort {
 
@@ -73,19 +72,15 @@ public class VisitsUseCase implements VisitsServicePort {
             String sortBy,
             boolean orderAsc
     ) {
-        // 1. Construir el criterio de ordenamiento
         Sort sort = orderAsc
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
-        // 2. Paginación
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        // 3. Lógica fija de dominio: descartar pasados y no mostrar con ≥2 agendados
         LocalDateTime now = LocalDateTime.now();
         int maxScheduled = 2;
 
-        // 4. Llamada al persistence port con los nuevos parámetros
         Page<VisitsModel> pageResult = visitsPersistencePort.findWithFilters(
                 startFrom,
                 startTo,
@@ -97,7 +92,6 @@ public class VisitsUseCase implements VisitsServicePort {
                 pageable
         );
 
-        // 5. Devolver PagedResult
         return new PagedResult<>(
                 pageResult.getContent(),
                 pageResult.getNumber(),

@@ -5,11 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface VisitsPersistencePort {
     boolean existsOverlap(Long sellerId, LocalDateTime start, LocalDateTime end);
     VisitsModel save(VisitsModel visit);
-    int getScheduledPersonCount(Long visitId);
     Long getLocationId(Long visitId);
     Page<VisitsModel> findWithFilters(
             LocalDateTime startFrom,
@@ -21,5 +21,5 @@ public interface VisitsPersistencePort {
             int maxScheduled,
             Pageable pageable
     );
-
+    Optional<VisitsModel> findById(Long id);
 }

@@ -31,7 +31,5 @@ public class VisitsEntity {
     @Column(name = "location_id")
     private Long locationId;
 
-    @Column(name = "scheduled_person_count", nullable = false)
-    private int scheduledPersonCount = 0;
 }
 

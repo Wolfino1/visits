@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VisitsPersistenceAdapter implements VisitsPersistencePort {
 
@@ -32,7 +33,6 @@ public class VisitsPersistenceAdapter implements VisitsPersistencePort {
         VisitsEntity entity = entityMapper.modelToEntity(visit);
         VisitsEntity saved  = repository.save(entity);
         VisitsModel result  = entityMapper.entityToModel(saved);
-        result.setScheduledPersonCount(saved.getScheduledPersonCount());
         result.setLocationId(saved.getLocationId());
         return result;
     }
@@ -44,12 +44,6 @@ public class VisitsPersistenceAdapter implements VisitsPersistencePort {
         return repository.existsOverlap(sellerId, startDateTime, endDateTime);
     }
 
-    @Override
-    public int getScheduledPersonCount(Long visitId) {
-        return repository.findById(visitId)
-                .map(VisitsEntity::getScheduledPersonCount)
-                .orElse(0);
-    }
 
     @Override
     public Long getLocationId(Long visitId) {
@@ -85,15 +79,19 @@ public class VisitsPersistenceAdapter implements VisitsPersistencePort {
             if (locationId != null)
                 preds.add(cb.equal(root.get("location").get("id"), locationId));
 
-            // Regla fija UH‑9:
             preds.add(cb.greaterThanOrEqualTo(root.get("startDateTime"), now));
-            preds.add(cb.lessThan(root.get("scheduledPersonCount"), maxScheduled));
 
             return cb.and(preds.toArray(new Predicate[0]));
         };
 
         Page<VisitsEntity> page = repository.findAll(spec, pageable);
         return page.map(entityMapper::entityToModel);
+    }
+
+    @Override
+    public Optional<VisitsModel> findById(Long id) {
+        return repository.findById(id)
+                .map(entityMapper::entityToModel);
     }
 }
 

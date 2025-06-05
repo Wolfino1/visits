@@ -13,18 +13,15 @@ public class VisitsModel {
     private Long idHouse;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
-    private int scheduledPersonCount;
     private Long locationId;
 
     public VisitsModel(Long id, Long idSeller, Long idHouse,
-                       LocalDateTime startDateTime, LocalDateTime endDateTime,
-                       int scheduledPersonCount, Long locationId) {
+                       LocalDateTime startDateTime, LocalDateTime endDateTime, Long locationId) {
         this.id = id;
         this.idSeller = idSeller;
         this.idHouse = idHouse;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        this.scheduledPersonCount = scheduledPersonCount;
         this.locationId = locationId;
     }
 
@@ -70,12 +67,6 @@ public class VisitsModel {
         if (this.startDateTime != null && end.isBefore(this.startDateTime))
             throw new InvalidException(DomainConstants.END_DATE_MUST_BE_AFTER_START_DATE);
         this.endDateTime = end;
-    }
-    public int getScheduledPersonCount() {
-        return scheduledPersonCount;
-    }
-    public void setScheduledPersonCount(int scheduledPersonCount) {
-        this.scheduledPersonCount = scheduledPersonCount;
     }
 
     public Long getLocationId() {

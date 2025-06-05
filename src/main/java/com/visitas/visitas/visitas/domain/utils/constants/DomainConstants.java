@@ -13,8 +13,11 @@ public class DomainConstants {
     public static final String PAGE_SIZE_INVALID = "Page size cannot be less than 0";
     public static final String HOUSE_DOES_NOT_EXIST        = "House does not exist";
     public static final String HOUSE_NOT_BELONG_TO_SELLER  = "You can only schedule visits for your own houses";
-
-
-
-
+    public static final String VISIT_NOT_FOUND = "Visit not found";
+    public static final String VISIT_SLOT_FULL = "Slots for this visits are full";
+    public static final String VISIT_ALREADY_SCHEDULED_BY_USER = "You have already booked this visit";
+    public static final int MAX_SCHEDULED_PER_SLOT = 2;
+    public static final String VISIT_FULL = "There are 2 people booked for this visit already";
+    public static final String INVALID_HOUSE_SELLER = "Unable to find this house seller";
+    public static final String HOUSE_LOCATION_NOT_FOUND = "Unable to find this house location";
 }

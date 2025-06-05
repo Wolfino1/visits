@@ -33,6 +33,17 @@ public class JwtUtil {
         }
         return null;
     }
+
+    public Long extractBuyerId(String token) {
+        Object claim = extractAllClaims(token).get("buyerId");
+        if (claim instanceof Number) {
+            return ((Number) claim).longValue();
+        } else if (claim instanceof String) {
+            return Long.valueOf((String) claim);
+        }
+        return null;
+    }
+
     public String extractUsername(String token) {
         return extractAllClaims(token).getSubject();
     }

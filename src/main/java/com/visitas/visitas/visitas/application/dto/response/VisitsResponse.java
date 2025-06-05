@@ -7,6 +7,5 @@ public record VisitsResponse(Long id,
                              Long houseId,
                              LocalDateTime startDateTime,
                              LocalDateTime endDateTime,
-                             int scheduledPersonCount,
                              Long locationId) {
 }

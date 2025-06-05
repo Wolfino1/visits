@@ -36,7 +36,7 @@ public class VisitsController {
     private final VisitsDtoMapper dtoMapper;
 
     @PreAuthorize("hasRole('SELLER')")
-    @PostMapping("/")
+    @PostMapping("")
     @Operation(
             summary     = "Create a visit",
             description = "Create a new visit slot for a house",
@@ -65,13 +65,11 @@ public class VisitsController {
             @RequestHeader("Authorization") String authHeader
     ) {
         String token = authHeader.substring(7);
-
         Long sellerId = jwtUtil.extractSellerId(token);
 
         VisitsResponse resp = visitsService.save(dto, sellerId);
         return ResponseEntity.status(HttpStatus.CREATED).body(resp);
     }
-
 
     @GetMapping("/get")
     @Operation(

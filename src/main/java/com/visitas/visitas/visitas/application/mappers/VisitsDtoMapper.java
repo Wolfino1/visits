@@ -24,7 +24,6 @@ public abstract class VisitsDtoMapper {
     @Mapping(source = "idHouse",              target = "houseId")
     @Mapping(source = "startDateTime",        target = "startDateTime")
     @Mapping(source = "endDateTime",          target = "endDateTime")
-    @Mapping(source = "scheduledPersonCount", target = "scheduledPersonCount")
     @Mapping(source = "locationId",           target = "locationId")
     public abstract VisitsResponse modelToResponse(VisitsModel model);
 }

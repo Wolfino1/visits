@@ -1,5 +1,6 @@
 server:
   port: 8081
+
 spring:
   api-docs:
     enabled: true
@@ -14,9 +15,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  jwt:
-    secret: pPj7W5c8LsyP9+ldOwqQF/qEyzTV6WUJFSUgfsVOkXs=
-    expiration: 36000000
+
+jwt:
+  secret: pPj7W5c8LsyP9+ldOwqQF/qEyzTV6WUJFSUgfsVOkXs=
+  expiration: 36000000
+
 house:
   service:
     base-url: http://localhost:8082

@@ -17,6 +17,8 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long expirationTime;
 
+
+
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)))
